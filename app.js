@@ -416,7 +416,11 @@ function renderAgenda(events) {
     const deleteBtn = document.createElement("button");
     deleteBtn.type = "button";
     deleteBtn.textContent = "✕";
-    deleteBtn.addEventListener("click", () => deleteEvent(ev.id));
+    deleteBtn.addEventListener("click", () => {
+      if (confirm("일정을 삭제하시겠습니까?")) {
+        deleteEvent(ev.id);
+      }
+    });
     row.appendChild(deleteBtn);
 
     li.appendChild(row);
