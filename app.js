@@ -343,7 +343,7 @@ function startEditingEvent(li, ev) {
   editInput.type = "text";
   editInput.className = "event-edit-input";
   editInput.value = ev.title;
-  li.replaceChild(editInput, span);
+  span.parentNode.replaceChild(editInput, span);
   editInput.focus();
   editInput.select();
 
@@ -391,37 +391,42 @@ function renderAgenda(events) {
     const li = document.createElement("li");
     li.className = "agenda-item";
 
+    const row = document.createElement("div");
+    row.className = "agenda-row";
+
     const badge = document.createElement("span");
     badge.className = "member-badge";
     badge.textContent = ev.member;
     badge.style.background = colorForMember(ev.member);
-    li.appendChild(badge);
-
-    if (ev.event_time) {
-      const time = document.createElement("span");
-      time.className = "event-time";
-      time.textContent = ev.event_time;
-      li.appendChild(time);
-    }
+    row.appendChild(badge);
 
     const span = document.createElement("span");
     span.className = "event-title";
     span.textContent = ev.title;
     span.addEventListener("dblclick", () => startEditingEvent(li, ev));
-    li.appendChild(span);
+    row.appendChild(span);
 
     if (ev.end_date && ev.end_date !== ev.event_date) {
       const range = document.createElement("span");
       range.className = "event-range";
       range.textContent = `${formatShortDate(ev.event_date)}~${formatShortDate(ev.end_date)}`;
-      li.appendChild(range);
+      row.appendChild(range);
     }
 
     const deleteBtn = document.createElement("button");
     deleteBtn.type = "button";
     deleteBtn.textContent = "✕";
     deleteBtn.addEventListener("click", () => deleteEvent(ev.id));
-    li.appendChild(deleteBtn);
+    row.appendChild(deleteBtn);
+
+    li.appendChild(row);
+
+    if (ev.event_time) {
+      const time = document.createElement("div");
+      time.className = "event-time";
+      time.textContent = ev.event_time;
+      li.appendChild(time);
+    }
 
     list.appendChild(li);
   });
@@ -533,11 +538,17 @@ document.getElementById("today-btn").addEventListener("click", () => {
   loadMonth();
 });
 
+const eventTimeInput = document.getElementById("event-time");
+eventTimeInput.addEventListener("input", () => {
+  eventTimeInput.style.height = "auto";
+  eventTimeInput.style.height = eventTimeInput.scrollHeight + "px";
+});
+
 const eventForm = document.getElementById("event-form");
 eventForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const title = document.getElementById("event-title").value.trim();
-  const time = document.getElementById("event-time").value.trim();
+  const time = eventTimeInput.value.trim();
   const member = document.getElementById("event-member").value.trim();
   if (!title || !member) return;
 
@@ -545,7 +556,8 @@ eventForm.addEventListener("submit", (event) => {
   const endStr = pendingRangeEnd ? localDateString(pendingRangeEnd) : startStr;
 
   document.getElementById("event-title").value = "";
-  document.getElementById("event-time").value = "";
+  eventTimeInput.value = "";
+  eventTimeInput.style.height = "auto";
   document.getElementById("event-member").value = "";
   resetRangePicking();
   addEvent(title, time, member, startStr, endStr);
