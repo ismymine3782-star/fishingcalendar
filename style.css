@@ -200,8 +200,8 @@ h1 {
   align-items: center;
   justify-content: flex-start;
   gap: 3px;
-  min-height: 74px;
-  padding: 14px 4px 10px;
+  min-height: 46px;
+  padding: 10px 4px 8px;
   border: 1px solid transparent;
   border-radius: 8px;
   background: transparent;
@@ -261,11 +261,11 @@ h1 {
   min-width: 0;
   width: 100%;
   margin-top: 1px;
-  height: 20px;
+  height: 28px;
   display: flex;
   align-items: center;
   padding: 0 7px;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   color: #1c1c1a;
   white-space: nowrap;
