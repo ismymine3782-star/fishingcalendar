@@ -477,14 +477,13 @@ h1 {
     padding: 24px 12px;
   }
 
-  .calendar-card {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+  .calendar-cell {
+    padding: 8px 2px 6px;
   }
 
-  .weekday-row,
-  .calendar-grid {
-    min-width: 720px;
+  .event-bar {
+    padding: 0 3px;
+    font-size: 11px;
   }
 
   .event-form {
