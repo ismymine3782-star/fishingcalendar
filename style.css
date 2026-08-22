@@ -310,6 +310,11 @@ h1 {
   min-width: 100px;
 }
 
+.event-form input#event-location {
+  flex: 1;
+  min-width: 100px;
+}
+
 .event-form input#event-time {
   flex: 0 0 90px;
 }
@@ -411,6 +416,13 @@ h1 {
 
 .event-range {
   font-size: 11px;
+  color: #a3a299;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.event-location {
+  font-size: 12px;
   color: #a3a299;
   flex-shrink: 0;
   white-space: nowrap;

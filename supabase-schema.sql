@@ -6,12 +6,14 @@ create table if not exists fishing_events (
   end_date date,
   event_time text,
   member text not null,
+  location text,
   inserted_at timestamptz not null default now()
 );
 
--- 기존에 이미 테이블을 만들었다면 아래 두 줄만 추가로 실행하면 됩니다.
+-- 기존에 이미 테이블을 만들었다면 아래 줄들만 추가로 실행하면 됩니다.
 alter table fishing_events add column if not exists end_date date;
 alter table fishing_events alter column event_time type text using event_time::text;
+alter table fishing_events add column if not exists location text;
 
 alter table fishing_events enable row level security;
 

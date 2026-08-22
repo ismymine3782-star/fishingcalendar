@@ -312,7 +312,9 @@ function renderCalendar() {
       bar.style.gridColumn = `${seg.startCol} / ${seg.endCol}`;
       bar.style.gridRow = String(2 + seg.lane);
       bar.style.background = colorForMember(seg.ev.member);
-      const label = `${seg.ev.member} ${seg.ev.title}`;
+      const label = seg.ev.location
+        ? `${seg.ev.member} ${seg.ev.title} @${seg.ev.location}`
+        : `${seg.ev.member} ${seg.ev.title}`;
       bar.textContent = label;
       bar.title = label;
       bar.addEventListener("click", () => handleDayClick(seg.segStartDate));
@@ -410,6 +412,13 @@ function renderAgenda(events) {
     span.addEventListener("dblclick", () => startEditingEvent(li, ev));
     li.appendChild(span);
 
+    if (ev.location) {
+      const location = document.createElement("span");
+      location.className = "event-location";
+      location.textContent = ev.location;
+      li.appendChild(location);
+    }
+
     if (ev.end_date && ev.end_date !== ev.event_date) {
       const range = document.createElement("span");
       range.className = "event-range";
@@ -484,13 +493,14 @@ function selectDate(date) {
   }
 }
 
-async function addEvent(title, time, member, startStr, endStr) {
+async function addEvent(title, time, member, startStr, endStr, location) {
   const { error } = await supabaseClient.from("fishing_events").insert({
     title,
     event_date: startStr,
     end_date: endStr,
     event_time: time || null,
     member,
+    location: location || null,
   });
   if (error) {
     setStatus("추가 실패: " + error.message);
@@ -537,6 +547,7 @@ const eventForm = document.getElementById("event-form");
 eventForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const title = document.getElementById("event-title").value.trim();
+  const location = document.getElementById("event-location").value.trim();
   const time = document.getElementById("event-time").value.trim();
   const member = document.getElementById("event-member").value.trim();
   if (!title || !member) return;
@@ -545,10 +556,11 @@ eventForm.addEventListener("submit", (event) => {
   const endStr = pendingRangeEnd ? localDateString(pendingRangeEnd) : startStr;
 
   document.getElementById("event-title").value = "";
+  document.getElementById("event-location").value = "";
   document.getElementById("event-time").value = "";
   document.getElementById("event-member").value = "";
   resetRangePicking();
-  addEvent(title, time, member, startStr, endStr);
+  addEvent(title, time, member, startStr, endStr, location);
 });
 
 supabaseClient

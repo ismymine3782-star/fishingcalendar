@@ -3,13 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>피싱캘린더</title>
+<title>피싱캘린더 FISHING CALENDAR</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div id="password-gate" class="password-gate">
     <form id="password-form" class="password-form">
-      <p class="password-title">피싱캘린더</p>
+      <p class="password-team">피싱캘린더</p>
+      <p class="password-title">FISHING CALENDAR</p>
       <input type="password" id="password-input" placeholder="비밀번호" autocomplete="off" required>
       <button type="submit">입장</button>
       <p id="password-error" class="password-error"></p>
@@ -35,7 +36,8 @@
         </g>
       </svg>
       <div class="header-text">
-        <h1>피싱캘린더</h1>
+        <p class="team-name">피싱캘린더</p>
+        <h1>FISHING CALENDAR</h1>
       </div>
     </header>
 
@@ -57,11 +59,12 @@
     <section class="agenda-card">
       <h2 id="selected-date-label"></h2>
       <form id="event-form" class="event-form">
-        <input type="text" id="event-title" placeholder="일정 제목" autocomplete="off" required>
-        <input type="text" id="event-time" placeholder="시간 (선택)" autocomplete="off">
+        <input type="text" id="event-title" placeholder="배 이름" autocomplete="off" required>
+        <input type="text" id="event-location" placeholder="위치" autocomplete="off">
+        <input type="text" id="event-time" placeholder="일정 (인원/입금여부/기타)" autocomplete="off">
         <button type="button" id="range-btn" class="range-btn">기간</button>
         <span id="range-display" class="range-display"></span>
-        <input type="text" id="event-member" placeholder="담당자 이름" list="member-list" autocomplete="off" required>
+        <input type="text" id="event-member" placeholder="예약자 이름" list="member-list" autocomplete="off" required>
         <datalist id="member-list"></datalist>
         <button type="submit">추가</button>
       </form>
