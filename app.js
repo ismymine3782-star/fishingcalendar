@@ -27,8 +27,8 @@ document.getElementById("password-form").addEventListener("submit", (event) => {
   }
 });
 
-const SUPABASE_URL = "https://cwcmvkwajutvhrypznni.supabase.co";
-const SUPABASE_KEY = "sb_publishable_whAcK6B3G0yqLF91blrk1w_ufcL6xjn";
+const SUPABASE_URL = "https://exrofehzsootidpmemrn.supabase.co";
+const SUPABASE_KEY = "sb_publishable_luB78LH___zEM55Quc8iFA_OBQGwsiS";
 
 const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 

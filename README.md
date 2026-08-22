@@ -5,7 +5,7 @@
 ## 사용 전 준비
 
 1. Supabase 프로젝트의 SQL Editor에서 [supabase-schema.sql](supabase-schema.sql) 내용을 한 번 실행하세요. (`fishing_events` 테이블 생성 + 공유 권한 + 실시간 동기화 설정)
-2. `app.js`의 `SUPABASE_URL`, `SUPABASE_KEY`는 기존 TO DO LIST / 팀 캘린더와 같은 Supabase 프로젝트를 재사용합니다. 다른 프로젝트를 쓰려면 값을 교체하세요.
+2. `app.js`의 `SUPABASE_URL`, `SUPABASE_KEY`는 피싱캘린더 전용 Supabase 프로젝트를 사용합니다. 다른 프로젝트를 쓰려면 값을 교체하세요.
 
 ## 로컬 실행
 
