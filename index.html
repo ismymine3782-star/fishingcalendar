@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>피싱캘린더</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="password-gate" class="password-gate">
+    <form id="password-form" class="password-form">
+      <p class="password-title">피싱캘린더</p>
+      <input type="password" id="password-input" placeholder="비밀번호" autocomplete="off" required>
+      <button type="submit">입장</button>
+      <p id="password-error" class="password-error"></p>
+    </form>
+  </div>
+
+  <main class="app" hidden>
+    <header class="site-header">
+      <svg class="logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g fill="#d97757">
+          <polygon points="50,8 58,44 50,52 42,44" transform="rotate(0 50 50)"/>
+          <polygon points="50,8 58,44 50,52 42,44" transform="rotate(30 50 50)"/>
+          <polygon points="50,8 58,44 50,52 42,44" transform="rotate(60 50 50)"/>
+          <polygon points="50,8 58,44 50,52 42,44" transform="rotate(90 50 50)"/>
+          <polygon points="50,8 58,44 50,52 42,44" transform="rotate(120 50 50)"/>
+          <polygon points="50,8 58,44 50,52 42,44" transform="rotate(150 50 50)"/>
+          <polygon points="50,8 58,44 50,52 42,44" transform="rotate(180 50 50)"/>
+          <polygon points="50,8 58,44 50,52 42,44" transform="rotate(210 50 50)"/>
+          <polygon points="50,8 58,44 50,52 42,44" transform="rotate(240 50 50)"/>
+          <polygon points="50,8 58,44 50,52 42,44" transform="rotate(270 50 50)"/>
+          <polygon points="50,8 58,44 50,52 42,44" transform="rotate(300 50 50)"/>
+          <polygon points="50,8 58,44 50,52 42,44" transform="rotate(330 50 50)"/>
+        </g>
+      </svg>
+      <div class="header-text">
+        <h1>피싱캘린더</h1>
+      </div>
+    </header>
+
+    <p id="status" class="status"></p>
+
+    <section class="calendar-card">
+      <div class="calendar-nav">
+        <button id="prev-month" type="button" aria-label="이전 달">‹</button>
+        <h2 id="current-month"></h2>
+        <button id="next-month" type="button" aria-label="다음 달">›</button>
+        <button id="today-btn" type="button" class="today-btn">오늘</button>
+      </div>
+      <div class="weekday-row">
+        <span>일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span>
+      </div>
+      <div id="calendar-grid" class="calendar-grid"></div>
+    </section>
+
+    <section class="agenda-card">
+      <h2 id="selected-date-label"></h2>
+      <form id="event-form" class="event-form">
+        <input type="text" id="event-title" placeholder="일정 제목" autocomplete="off" required>
+        <input type="text" id="event-time" placeholder="시간 (선택)" autocomplete="off">
+        <button type="button" id="range-btn" class="range-btn">기간</button>
+        <span id="range-display" class="range-display"></span>
+        <input type="text" id="event-member" placeholder="담당자 이름" list="member-list" autocomplete="off" required>
+        <datalist id="member-list"></datalist>
+        <button type="submit">추가</button>
+      </form>
+      <ul id="agenda-list" class="agenda-list"></ul>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script src="app.js"></script>
+</body>
+</html>
