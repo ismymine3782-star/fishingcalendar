@@ -312,7 +312,7 @@ function renderCalendar() {
       bar.style.gridColumn = `${seg.startCol} / ${seg.endCol}`;
       bar.style.gridRow = String(2 + seg.lane);
       bar.style.background = colorForMember(seg.ev.member);
-      const label = `${seg.ev.member} ${seg.ev.title}`;
+      const label = `${seg.ev.title} / 예약자 ${seg.ev.member}`;
       bar.textContent = label;
       bar.title = label;
       bar.addEventListener("click", () => handleDayClick(seg.segStartDate));
