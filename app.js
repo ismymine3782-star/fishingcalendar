@@ -312,9 +312,9 @@ function renderCalendar() {
       bar.style.gridColumn = `${seg.startCol} / ${seg.endCol}`;
       bar.style.gridRow = String(2 + seg.lane);
       bar.style.background = colorForMember(seg.ev.member);
-      const label = `${seg.ev.title} / ${seg.ev.member}`;
-      bar.textContent = label;
-      bar.title = label;
+      const shortTitle = seg.ev.title.split("/")[0].trim();
+      bar.textContent = shortTitle;
+      bar.title = `${seg.ev.title} / ${seg.ev.member}`;
       bar.addEventListener("click", () => handleDayClick(seg.segStartDate));
       weekRow.appendChild(bar);
     });
